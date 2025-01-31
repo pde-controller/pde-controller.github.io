@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Chart understanding is crucial for applying Multimodal Large Language Models (MLLMs) to tasks like analyzing scientific papers and financial reports. However, current datasets often use simplified charts with template-based questions, leading to overly optimistic progress assessments. We introduce CharXiv, an evaluation suite with 2,323 diverse and challenging charts from scientific papers. CharXiv includes two question types: (1) descriptive questions on basic chart elements and (2) reasoning questions requiring synthesis of complex visual information. Human experts curated and verified all charts and questions. Our findings show a significant gap in reasoning skills, with the strongest proprietary model (GPT-4o) achieving 47.1% accuracy and the best open-source model (InternVL Chat V1.5) at 29.2%, both far below human performance of 80.5%. CharXiv aims to provide a more realistic measure of MLLM progress in chart understanding.">
+  <meta name="keywords" content="Benchmarks, AI, Multimodal Large Language Models. Chart Understanding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CharXiv</title>
+  
+  <script src="https://kit.fontawesome.com/854f31a6c4.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/dataTables.bulma.css">
+  <link rel="icon" href="./static/images/pdecontroller_logo.png">
+</head>
+
+
+<body>
+
+<!-- paper title and author -->
+<section class="section">
+  <!-- <div class="hero-body"> -->
+    <div class="container is-max-desktop no_max_width">
+      <div class="columns is-centered">
+        <div class="column has-text-centered is-four-fifths">
+          <h1 class="title is-1 publication-title">
+            <img src="./static/images/pdecontroller_logo.png" width="80"/>
+            <!-- <span class="rainbow_text_animated">PDE-Controller</span> -->
+            <span>PDE-Controller</span>
+          </h1>
+          <h2 class="subtitle is-3 publication-subtitle">
+            LLMs for Autoformalization and Reasoning of PDEs
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=PU4nJd0AAAAJ&hl=en&oi=ao">
+                <span class="fancy_text_color">Mauricio Soroco</span>
+              </a><sup>1</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://scholar.google.ca/citations?user=-zPtvfsAAAAJ&hl=en">
+                <span class="fancy_text_color">Jialin Song</span>
+              </a><sup>1</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://xiamengzhou.github.io/">
+                <span class="fancy_text_color">Mengzhou Xia</span>
+              </a><sup>2</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://howard50b.github.io/">
+                <span class="fancy_text_color">Kye Emond</span>
+              </a><sup>3</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://yitaoliu17.com/">
+                <span class="fancy_text_color">Weiran Sun</span>
+              </a><sup>3</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://richardzhu123.github.io/">
+                <span class="fancy_text_color">Wuyang Chen</span>
+              </a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>School of Computing Science, Simon Fraser University</span><br>
+            <span class="author-block"><sup>2</sup>Department of Computer Science, Princeton University</span>
+            <span class="author-block"><sup>3</sup>Department of Mathematics, Simon Fraser University</span>
+            <!-- <br> -->
+            <!-- <span class="author-block"><b style="color:#f41c1c">NeurIPS 2024</b></span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arxiv link -->
+              <span class="link-block">
+                <a href="http://arxiv.org/abs/2501.xxxxx"
+                   class="external-link button is-normal is-rounded is-dark", target="_blank">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/delta-lab-ai/pde-controller"
+                   class="external-link button is-normal is-rounded is-dark", target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Data Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/delta-lab-ai/pde-controller"
+                   class="external-link button is-normal is-rounded is-dark", target="_blank">
+                  <span class="icon">
+                    <i class="fa fa-database"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="has-text-centered">
+          <img src="./static/images/teaser.png" width="350">
+          <img src="./static/images/pde_control.png" width="500">
+        </div>
+      </div>
+      <!-- teaser video -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <video id="teaser" autoplay muted width="90%" style="width: 60%;" controls>
+            <source src="static/videos/pdecontroller.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h3 class="subtitle has-text-centered">
+          </h3>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">
+          <span class="fancy_text_color">Introduction</span>
+        </h2>
+        <div style="margin-bottom: 1em;">
+          <p>
+            We present <span class="fancy_text_color">PDE-Controller</span>, a framework that enables large language models (LLMs) to control systems governed by partial differential equations (PDEs). Traditional LLMs have excelled in commonsense reasoning but fall short in rigorous logical reasoning. While recent AI-for-math has made strides in pure mathematics, areas of applied mathematics, particularly PDEs, remain underexplored despite their significant real-world applications. Our approach enables LLMs to transform informal natural language instructions into formal specifications, and then execute reasoning and planning steps to improve the utility of PDE control. We build a holistic solution comprising datasets (both human-written cases and 2 million synthetic samples), math-reasoning models, and novel evaluation metrics, all of which require significant effort. Our  <span class="fancy_text_color">PDE-Controller</span> significantly outperforms the latest open-source and GPT models in reasoning, autoformalization, and program synthesis, achieving up to a 62% improvement in utility gain for PDE control. By bridging the gap between language generation and PDE systems, we demonstrate the potential of LLMs in addressing complex scientific and engineering challenges. We promise to release all data, model checkpoints, and code upon acceptance.
+          </p>
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/images/overview.png">
+        <!-- </div> -->
+        <!-- <div class="has-text-centered"></div> -->
+          <p>
+            <b>Figure:</b>
+            Overview of our PDE-Controller framework.
+            The Translator directly autoformalizes an informal PDE control problem (yellow) into formal specifications with STL (blue).
+            The Controller proposes novel STL subgoals (purple).
+            Each STL is synthesized into specialized Python programs by the Coder (green) and optimized externally (white).
+            From the initial condition (i.), our PDE reasoning optimizes a subgoal (ii.) before the original problem, improving the utility at the end of control (iii.).
+            We train the Controller with reinforcement learning from human feedback (RLHF). 
+          </p>
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/images/case_study.png">
+        <!-- </div> -->
+        <!-- <div class="has-text-centered"> -->
+          <p>
+            <b>Figure:</b>
+            Case study of LLM reasoning for PDE control on heat (top) and wave (bottom) problems.
+            <!-- (symbols are aligned with Fig. 5). -->
+            <!-- From left to right: Directly solving ϕ from the initial condition u(0) (1st column) yields r(ϕ) (2nd column); Reasoning: solving ϕ′ from -->
+            <!-- u(0) to get u′ (3rd column) then solving ϕ from u′ to get r(ϕ|ϕ′) (4th column). Black curves indicate the system’s states (temperature for -->
+            <!-- heat, displacement for wave) at t or t′. Colored segments are constraints, with dashes for inequalities (≥ when dashes are above the solid, -->
+            <!-- and vice versa). Although we plot constraints, they may constrain temporal ranges [t1, t2]̸ ∋ t, t′. -->
+          </p>
+        </div>
+      
+<br><br>
+
+      
+        <div class="is-size-5 publication-authors">
+          <span class="author-block" style="font-size: 120%;"><i>The website is under construction. We will continue updating this project!</i></span>
+          <br><br>
+          <div class="has-text-centered">
+            <img src="./static/images/pdecontroller_logo.png", width="200"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</section>
+
+<!-- <br><br> -->
+
+<section class="section no_pad_section">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+
+      <!-- <div></div> -->
+      <h2 class="title is-four-fifths">
+        <span class="fancy_text_color">Citation</span>
+      </h2>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <pre style="border-radius: 25px;">
+          <code>
+@article{soroco2025pdecontroller,
+  title={PDE-Controller: LLMs for Autoformalization and Reasoning of PDEs},
+  author={Soroco, Mauricio and Song, Jialin and Xia, Mengzhou and Emond, Kye and Sun, Weiran and Chen, Wuyang},
+  journal={arXiv preprint arXiv:2502.xxxxx},
+  year={2025}
+}
+</code>
+        </pre>
+      </div>
+    </div>
+      
+  </div>
+</section>
+
+<footer class="footer" style="padding-bottom: 1.5em; padding-top: 1.5em;">
+  <div class="container">
+    <div class="content has-text-centered">
+      <span>Website based on <a href="https://charxiv.github.io/", target="_blank">CharXiv</a>, <a href="https://nerfies.github.io", target="_blank">Nerfies, <a href="https://mlpc-ucsd.github.io/TokenCompose/", target="_blank">TokenCompose, <a href="https://mmmu-benchmark.github.io/", target="_blank">MMMU</a>, and <a href="https://mathvista.github.io/", target="_blank">MathVista</a>.</span>
+
+
+    </div>
+  </div>
+</footer>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+  <script src="./static/js/jquery.csv.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bulma.min.js"></script>
+  <script src="./static/js/csv_to_html_table.js"></script>
+  <script>
+    CsvToHtmlTable.init({
+      csv_path: 'data/val_result.csv', 
+      element: 'table-container', 
+      allow_download: true,
+      csv_options: {separator: ',', delimiter: '"'},
+      datatables_options: {
+        "paging": false, 
+        "order": [[3, 'desc']],
+        "columnDefs": [
+        {targets: [0], className: 'dt-left', className: 'dt-head-left'},
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
